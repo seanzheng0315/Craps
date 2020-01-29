@@ -12,11 +12,11 @@ public class Craps
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        System.out.println("Would you like to play craps? (Y/N)");
+        System.out.print("Would you like to play craps? (Y/N) ");
         String play = in.next();
         while (play.toUpperCase().substring(0,1).equals("Y"))
         {
-            System.out.println("Would you like to read the instructions? (Y/N)");
+            System.out.print("Would you like to read the instructions? (Y/N) ");
             String instructions = in.next();
             if (instructions.toUpperCase().substring(0,1).equals("Y"))
             {
@@ -32,8 +32,66 @@ public class Craps
                 System.out.println("one of two things happens: either they roll the point from");
                 System.out.println("that first roll again, in which case they win; or they roll");
                 System.out.println("a 7, in which case they lose.");
-
             }
+            System.out.println("Let's play a game of craps! ");
+            in = new Scanner(System.in);
+            System.out.println("Roll your first die by pressing [Enter]");
+            in.nextLine();
+            Die dice1 = new Die();
+            int roll1 = dice1.roll();
+            System.out.println("You rolled a " + roll1);
+            in = new Scanner(System.in);
+            System.out.println("Roll your second die by pressing [Enter]");
+            in.nextLine();
+            Die dice2 = new Die();
+            int roll2 = dice2.roll();
+            System.out.println("You rolled a " + roll2);
+            int score = roll1 + roll2;
+            System.out.println("Your score was " + score);
+            if (score == 7 || score == 11)
+            {
+                System.out.println("Yay! you won! ");
+            }
+            else if (score == 2 || score == 3 || score == 12)
+            {
+                System.out.println("You lost. Better luck next time! ");
+            }
+            else
+            {
+                in = new Scanner(System.in);
+                System.out.println("Roll your first die by pressing [Enter]");
+                in.nextLine();
+                roll1 = dice1.roll();
+                System.out.println("You rolled a " + roll1);
+                in = new Scanner(System.in);
+                System.out.println("Roll your second die by pressing [Enter]");
+                roll2 = dice2.roll();
+                System.out.println("You rolled a " + roll2);
+                System.out.println("Your score was " + (roll1 + roll2));
+                while (score != roll1 + roll2 && roll1 + roll2 != 7)
+                {
+                    in = new Scanner(System.in);
+                    System.out.println("Roll your first die by pressing [Enter]");
+                    in.nextLine();
+                    roll1 = dice1.roll();
+                    System.out.println("You rolled a " + roll1);
+                    in = new Scanner(System.in);
+                    System.out.println("Roll your second die by pressing [Enter]");
+                    roll2 = dice2.roll();
+                    System.out.println("You rolled a " + roll2);
+                    System.out.println("Your score was " + (roll1 + roll2));
+                }
+                if (score == roll1 + roll2)
+                {
+                    System.out.println("Yay! You won! ");
+                }
+                else
+                {
+                    System.out.println("You lost. Better luck next time! ");
+                }
+            }
+            System.out.print("Would you like to play again? (Y/N) ");
+            play = in.next();
         }
             System.out.println("Ok, goodbye.");
     }
